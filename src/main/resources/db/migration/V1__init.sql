@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS message
     id      SERIAL PRIMARY KEY,
     chat_id INT          NOT NULL REFERENCES chat (id),
     role    VARCHAR(255) NOT NULL,
-    text    TEXT         NOT NULL,
+    content TEXT         NOT NULL,
     created TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

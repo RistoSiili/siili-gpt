@@ -1,9 +1,10 @@
 package com.siili.siiligpt.controller;
 
+import com.siili.siiligpt.model.ChatDTO;
 import com.siili.siiligpt.service.ChatService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ChatController {
@@ -17,5 +18,11 @@ public class ChatController {
     @GetMapping("/chat")
     public String chat(@RequestParam String prompt) {
         return chatService.chat(prompt);
+    }
+
+    @PostMapping("/chat")
+    public ResponseEntity<Integer> createChat(@RequestBody ChatDTO chatDTO) {
+        int id = chatService.createChat(chatDTO);
+        return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 }
