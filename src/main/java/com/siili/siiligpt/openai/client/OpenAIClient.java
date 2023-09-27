@@ -1,7 +1,7 @@
-package com.siili.siiligpt.client;
+package com.siili.siiligpt.openai.client;
 
-import com.siili.siiligpt.model.ChatRequest;
-import com.siili.siiligpt.model.ChatResponse;
+import com.siili.siiligpt.openai.model.ChatRequest;
+import com.siili.siiligpt.openai.model.ChatResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

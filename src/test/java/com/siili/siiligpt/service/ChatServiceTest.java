@@ -1,6 +1,6 @@
 package com.siili.siiligpt.service;
 
-import com.siili.siiligpt.client.OpenAIClient;
+import com.siili.siiligpt.openai.client.OpenAIClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

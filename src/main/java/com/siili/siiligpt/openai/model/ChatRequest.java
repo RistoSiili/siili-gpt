@@ -1,4 +1,4 @@
-package com.siili.siiligpt.model;
+package com.siili.siiligpt.openai.model;
 
 import java.util.ArrayList;
 import java.util.List;

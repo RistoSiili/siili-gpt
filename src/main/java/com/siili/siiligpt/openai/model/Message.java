@@ -1,4 +1,4 @@
-package com.siili.siiligpt.model;
+package com.siili.siiligpt.openai.model;
 
 public class Message {
 

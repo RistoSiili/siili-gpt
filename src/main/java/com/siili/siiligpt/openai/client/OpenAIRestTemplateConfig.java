@@ -1,4 +1,4 @@
-package com.siili.siiligpt.client;
+package com.siili.siiligpt.openai.client;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
