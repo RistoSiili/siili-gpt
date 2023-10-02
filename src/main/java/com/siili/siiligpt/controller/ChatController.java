@@ -16,8 +16,8 @@ public class ChatController {
     }
 
     @GetMapping("/chat")
-    public String chat(@RequestParam String prompt) {
-        return chatService.chat(prompt);
+    public ResponseEntity<ChatDTO> chat(@RequestParam int chatId, @RequestParam String prompt) {
+        return new ResponseEntity<>(chatService.chat(prompt, chatId), HttpStatus.OK);
     }
 
     @PostMapping("/chat")

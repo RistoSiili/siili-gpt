@@ -30,7 +30,7 @@ tasks.named('test') {
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/siiligpt'
+    url = 'jdbc:postgresql://localhost:5432/postgres'
     user = System.getenv('SIILI_GPT_DB_USER')
     password = System.getenv('SIILI_GPT_DB_PASSWORD')
     locations = ['filesystem:src/main/resources/db/migration']

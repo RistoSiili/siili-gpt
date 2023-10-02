@@ -3,6 +3,7 @@ package com.siili.siiligpt.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "chat")
@@ -13,6 +14,9 @@ public class ChatDTO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_id_seq")
     private int id;
     private String name;
+
+    @Transient
+    private List<MessageDTO> messages;
     private Date created;
     private Date updated;
 
@@ -22,6 +26,7 @@ public class ChatDTO {
     public ChatDTO(ChatDTO other) {
         this.id = other.getId();
         this.name = other.getName();
+        this.messages = other.getMessages();
         this.created = other.getCreated();
         this.updated = other.getUpdated();
     }
@@ -40,6 +45,14 @@ public class ChatDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<MessageDTO> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<MessageDTO> messages) {
+        this.messages = messages;
     }
 
     public Date getCreated() {

@@ -18,32 +18,15 @@ class ChatServiceTest {
     private OpenAIClient openAIClient;
     @Mock
     private ChatRepository chatRepository;
+    @Mock
+    private MessageService messageService;
 
     private ChatService chatService;
 
     @BeforeEach()
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        chatService = new ChatService(openAIClient, chatRepository);
-    }
-
-    @Test
-    public void testChatMethodReturnsResponse() {
-        // Arrange
-        String prompt = "Hello, chatbot!";
-        String expectedResponse = "Hi there! How can I help you?";
-
-        // Mock the behavior of OpenAIClient's chat method
-        when(openAIClient.chat(prompt)).thenReturn(expectedResponse);
-
-        // Act
-        String actualResponse = chatService.chat(prompt);
-
-        // Assert
-        assertEquals(expectedResponse, actualResponse);
-
-        // Verify that the chat method was called with the expected argument
-        verify(openAIClient).chat(prompt);
+        chatService = new ChatService(openAIClient, chatRepository, messageService);
     }
 
     @Test
@@ -63,5 +46,27 @@ class ChatServiceTest {
 
         // Verify that the save method was called with the expected argument
         verify(chatRepository).save(chat);
+    }
+
+    @Test
+    public void testChatReturnsChatDTO() {
+        // Arrange
+        String prompt = "prompt";
+        int chatId = 0;
+        ChatDTO expectedChatDTO = new ChatDTO();
+        expectedChatDTO.setId(chatId);
+        expectedChatDTO.setName("name");
+        expectedChatDTO.setMessages(null);
+
+        when(chatRepository.findById(chatId)).thenReturn(java.util.Optional.of(expectedChatDTO));
+
+        // Act
+        ChatDTO actualChatDTO = chatService.chat(prompt, chatId);
+
+        // Assert
+        assertEquals(expectedChatDTO, actualChatDTO);
+
+        // Verify that the findById method was called with the expected argument
+        verify(chatRepository).findById(chatId);
     }
 }

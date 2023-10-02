@@ -1,16 +1,31 @@
 package com.siili.siiligpt.model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "message")
 public class MessageDTO {
-    String id;
-    String chatId;
-    String role;
-    String content;
-    Date created;
-    Date updated;
+
+    @Id
+    @SequenceGenerator(name = "message_id_seq", sequenceName = "message_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_id_seq")
+    private int id;
+
+    private int chatId;
+    private String role;
+    private String content;
+    private Date created = new Date();
+    private Date updated = new Date();
 
     public MessageDTO() {
+    }
+
+    public MessageDTO(String content, int chatId, String role) {
+        this.content = content;
+        this.role = role;
+        this.chatId = chatId;
     }
 
     public MessageDTO(MessageDTO other) {
@@ -22,19 +37,19 @@ public class MessageDTO {
         this.updated = other.getUpdated();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getChatId() {
+    public int getChatId() {
         return chatId;
     }
 
-    public void setChatId(String chatId) {
+    public void setChatId(int chatId) {
         this.chatId = chatId;
     }
 
