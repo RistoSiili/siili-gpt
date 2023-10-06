@@ -39,7 +39,7 @@ public class ChatService {
         messageService.createMessage(new MessageDTO(prompt, chatId, "user"));
 
         // Get the assistant's response
-        String assistantResponse = openAIClient.chat(prompt);
+        String assistantResponse = openAIClient.chat(messageService.getMessagesForChatId(chatId));
 
         // Create an assistant message
         messageService.createMessage(new MessageDTO(assistantResponse, chatId, "assistant"));

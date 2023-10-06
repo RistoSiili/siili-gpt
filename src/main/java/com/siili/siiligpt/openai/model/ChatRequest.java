@@ -13,11 +13,9 @@ public class ChatRequest {
     public ChatRequest() {
     }
 
-    public ChatRequest(String model, String prompt) {
+    public ChatRequest(String model, List<Message> messages) {
         this.model = model;
-
-        this.messages = new ArrayList<>();
-        this.messages.add(new Message("user", prompt));
+        this.messages = messages;
     }
 
     public String getModel() {
