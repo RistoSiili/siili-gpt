@@ -15,14 +15,14 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @GetMapping("/chat")
-    public ResponseEntity<ChatDTO> chat(@RequestParam int chatId, @RequestParam String prompt) {
-        return new ResponseEntity<>(chatService.chat(prompt, chatId), HttpStatus.OK);
-    }
-
-    @PostMapping("/chat")
+    @PostMapping("/create-chat")
     public ResponseEntity<Integer> createChat(@RequestBody ChatDTO chatDTO) {
         int id = chatService.createChat(chatDTO);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/chat")
+    public ResponseEntity<ChatDTO> chat(@RequestParam int chatId, @RequestParam String prompt) {
+        return new ResponseEntity<>(chatService.chat(prompt, chatId), HttpStatus.OK);
     }
 }

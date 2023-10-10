@@ -25,15 +25,6 @@ public class ChatService {
         return chatRepository.save(chat).getId();
     }
 
-    private void validateChat(ChatDTO chat) {
-        if (chat.getCreated() == null) {
-            chat.setCreated(new Date());
-        }
-        if (chat.getUpdated() == null) {
-            chat.setUpdated(new Date());
-        }
-    }
-
     public ChatDTO chat(String prompt, int chatId) {
         // Create an owner message
         messageService.createMessage(new MessageDTO(prompt, chatId, "user"));
@@ -47,5 +38,14 @@ public class ChatService {
         ChatDTO chatDTO = chatRepository.findById(chatId).orElseThrow();
         chatDTO.setMessages(messageService.getMessagesForChatId(chatId));
         return chatDTO;
+    }
+
+    private void validateChat(ChatDTO chat) {
+        if (chat.getCreated() == null) {
+            chat.setCreated(new Date());
+        }
+        if (chat.getUpdated() == null) {
+            chat.setUpdated(new Date());
+        }
     }
 }
