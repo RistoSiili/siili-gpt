@@ -7,6 +7,7 @@ import com.siili.siiligpt.repository.ChatRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ChatService {
@@ -47,5 +48,9 @@ public class ChatService {
         if (chat.getUpdated() == null) {
             chat.setUpdated(new Date());
         }
+    }
+
+    public List<ChatDTO> getChats() {
+        return (List<ChatDTO>) chatRepository.findAll();
     }
 }

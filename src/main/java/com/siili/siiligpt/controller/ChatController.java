@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ChatController {
 
@@ -24,5 +26,10 @@ public class ChatController {
     @PostMapping("/chat")
     public ResponseEntity<ChatDTO> chat(@RequestParam int chatId, @RequestParam String prompt) {
         return new ResponseEntity<>(chatService.chat(prompt, chatId), HttpStatus.OK);
+    }
+
+    @GetMapping("/chats")
+    public ResponseEntity<List<ChatDTO>> getChats() {
+        return new ResponseEntity<>(chatService.getChats(), HttpStatus.OK);
     }
 }
